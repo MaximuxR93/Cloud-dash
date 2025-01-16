@@ -32,15 +32,14 @@
     cursor: pointer;
 }
 
-
 .weather-icon {
     width: 150px;
     margin:30px;
 }
 
-.tempereture{
+.temperature{
     color: #fff;
-    font-size: 80px;
+    font-size: 90px; /* Increased size */
     line-height: 1;
 }
 
@@ -48,6 +47,7 @@
     color: #fff;
     font-size: 40px;
 }
+
 .weather-data{
     width: 100%;
     margin-top: 35px;
@@ -64,6 +64,6 @@
 }
 
 .weather-data .col img{
-width: 26px;
-margin-top: 10px;
+    width: 26px;
+    margin-top: 10px;
 }
