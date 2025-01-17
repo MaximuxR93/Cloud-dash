@@ -1,69 +1,155 @@
-.weather{
+.weather {
     place-self: center;
     padding: 40px;
-    border-radius: 15px;
-    background-image: linear-gradient(45deg,#2f4680,#500ae4);
+    border-radius: 20px;
+    background: linear-gradient(135deg, #4b79a1, #283e51); 
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Corrected box-shadow property */
     display: flex;
     flex-direction: column;
     align-items: center;
+    transition: transform 0.4s ease, box-shadow 0.4s ease, background 1s ease-in-out; /* Added background transition */
+}
+
+.weather:hover {
+    transform: scale(1.05); 
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
 }
 
 .search-bar {
     display: flex;
     align-items: center;
     gap: 12px;
+    margin-bottom: 20px;
 }
 
 .search-bar input {
     height: 50px;
-    border: none;
+    width: 250px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
     outline: none;
-    border-radius: 40px;
-    padding-left: 25px;
-    color: #000000;
+    border-radius: 25px;
+    padding-left: 20px;
+    color: #ffffff;
     font-size: 18px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(8px);
+    transition: box-shadow 0.3s ease, border 0.3s ease; /* Added border transition */
+}
+
+/* Focus state of input */
+.search-bar input:focus {
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+    border: 2px solid #ffffff; /* Added border color change on focus */
 }
 
 .search-bar img {
     width: 50px;
-    padding: 15px;
+    padding: 12px;
     border-radius: 50%;
-    background-color: #ebfffc;
+    background: linear-gradient(135deg, #78ffd6, #a8ff78);
     cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+/* Hover effect on search icon */
+.search-bar img:hover {
+    transform: rotate(15deg); /* Fun rotation on hover */
 }
 
 .weather-icon {
-    width: 150px;
-    margin:30px;
+    width: 120px;
+    margin: 20px;
+    animation: float 3s infinite ease-in-out;
 }
 
-.temperature{
-    color: #fff;
-    font-size: 90px; /* Increased size */
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.temperature {
+    color: #fdfdfd;
+    font-size: 80px;
     line-height: 1;
+    text-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
-.location{
-    color: #fff;
-    font-size: 40px;
+.location {
+    color: #dff9fb;
+    font-size: 30px;
+    font-weight: 500;
+    margin-top: 5px;
 }
 
-.weather-data{
+.weather-data {
     width: 100%;
-    margin-top: 35px;
-    color: #fff;
+    margin-top: 30px;
+    color: #ffffff;
     display: flex;
     justify-content: space-between;
+    gap: 30px;
+    font-size: 20px;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-.weather-data .col{
+.weather-data .col {
     display: flex;
-    align-items: flex-start;
-    gap: 12px;
-    font-size: 22px;
+    align-items: center;
+    gap: 15px;
 }
 
-.weather-data .col img{
-    width: 26px;
-    margin-top: 10px;
+.weather-data .col img {
+    width: 30px;
+    margin-top: 5px;
+}
+
+.weather-data .col p {
+    font-size: 22px;
+    margin: 0;
+}
+
+.weather-data .col span {
+    font-size: 16px;
+    color: #dcdde1;
+}
+
+/* Dynamic Backgrounds */
+.default-bg {
+    background: linear-gradient(135deg, #4b79a1, #283e51);
+}
+
+.clear-day {
+    background: linear-gradient(135deg, #fceabb, #f8b500);
+}
+
+.clear-night {
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+}
+
+.partly-cloudy-day {
+    background: linear-gradient(135deg, #d7d2cc, #304352);
+}
+
+.partly-cloudy-night {
+    background: linear-gradient(135deg, #4b6cb7, #182848);
+}
+
+.cloudy {
+    background: linear-gradient(135deg, #bdc3c7, #2c3e50);
+}
+
+.drizzle {
+    background: linear-gradient(135deg, #5d4157, #a8caba);
+}
+
+.rainy {
+    background: linear-gradient(135deg, #3a6073, #16222a);
+}
+
+.snowy {
+    background: linear-gradient(135deg, #e6dada, #274046);
 }

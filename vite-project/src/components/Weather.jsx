@@ -10,8 +10,9 @@ import wind_icon from '../assets/wind.png';
 import humidity_icon from '../assets/humidity.png';
 
 const Weather = () => {
-  const inputRef = useRef()
-  const [weatherData, setWeatherData] = useState(false);
+  const inputRef = useRef();
+  const [weatherData, setWeatherData] = useState(null);
+  const [backgroundClass, setBackgroundClass] = useState('default-bg');
 
   const allIcons = {
     "01d": clear_icon,
@@ -30,10 +31,26 @@ const Weather = () => {
     "13n": snow_icon,
   };
 
+  const weatherBackgrounds = {
+    "01d": "clear-day",
+    "01n": "clear-night",
+    "02d": "partly-cloudy-day",
+    "02n": "partly-cloudy-night",
+    "03d": "cloudy",
+    "03n": "cloudy",
+    "04d": "drizzle",
+    "04n": "drizzle",
+    "09d": "rainy",
+    "09n": "rainy",
+    "10d": "rainy",
+    "10n": "rainy",
+    "13d": "snowy",
+    "13n": "snowy",
+  };
 
   const search = async (city) => {
-    if(city === ""){
-      alert("enter the city name")
+    if (city === "") {
+      alert("Enter the city name");
       return;
     }
     try {
@@ -41,10 +58,8 @@ const Weather = () => {
       const response = await fetch(url);
       const data = await response.json();
 
-      
-
-      console.log(data);
       const icon = allIcons[data.weather[0].icon] || clear_icon;
+      const bgClass = weatherBackgrounds[data.weather[0].icon] || "default-bg";
 
       setWeatherData({
         humidity: data.main.humidity,
@@ -53,26 +68,26 @@ const Weather = () => {
         location: data.name,
         icon: icon,
       });
+      setBackgroundClass(bgClass);
     } catch (error) {
-      setWeatherData(false);
-      console.error('Error fetching weather data:', error);
+      setWeatherData(null);
+      console.error("Error fetching weather data:", error);
     }
   };
 
   useEffect(() => {
-    search('tokyo');
+    search("Tokyo");
   }, []);
 
   if (!weatherData) return <div>Loading...</div>;
 
   return (
-    <div className="weather">
+    <div className={`weather ${backgroundClass}`}>
       <div className="search-bar">
         <input ref={inputRef} type="text" placeholder="Search" />
-        <img src={search_icon} alt="" onClick={()=>search(inputRef.current.value)}/>
+        <img src={search_icon} alt="" onClick={() => search(inputRef.current.value)} />
       </div>
-      {weatherData?<>
-        <img src={weatherData.icon} alt="" className="weather-icon" />
+      <img src={weatherData.icon} alt="" className="weather-icon" />
       <p className="temperature">{weatherData.temperature}°C</p>
       <p className="location">{weatherData.location}</p>
       <div className="weather-data">
@@ -91,7 +106,6 @@ const Weather = () => {
           </div>
         </div>
       </div>
-      </>:<></>}
     </div>
   );
 };
